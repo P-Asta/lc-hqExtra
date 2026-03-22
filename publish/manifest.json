@@ -1,8 +1,8 @@
 {
     "name": "HqExtra",
-    "version_number": "1.0.0",
+    "version_number": "1.0.1",
     "website_url": "https://github.com/P-Asta/lc-hqExtra",
-    "description": "A mod by Asta that helps newer-version settings stay usable on older versions of Lethal Company.",
+    "description": "helps newer-version settings stay usable on older versions of Lethal Company.",
     "dependencies": [
         "BepInEx-BepInExPack-5.4.2100"
     ]

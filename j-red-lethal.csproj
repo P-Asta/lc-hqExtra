@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>HqExtra</AssemblyName>
+    <RootNamespace>j_red</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Deterministic>true</Deterministic>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BepInExCore>C:\Users\Asta\AppData\Roaming\asta.hq-launcher\versions\v73\BepInEx\core</BepInExCore>
+    <Managed>C:\Program Files (x86)\Steam\steamapps\common\Lethal Company\Lethal Company_Data\Managed</Managed>
+    <PluginsDir>C:\Users\Asta\AppData\Roaming\asta.hq-launcher\versions\v73\BepInEx\plugins</PluginsDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExCore)\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(Managed)\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCore)\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Netcode.Runtime">
+      <HintPath>$(Managed)\Unity.Netcode.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>$(Managed)\Unity.InputSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(Managed)\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(Managed)\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(Managed)\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(Managed)\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="CopyPluginOutputs" AfterTargets="Build" Condition="Exists('$(TargetPath)')">
+    <MakeDir Directories="$(ProjectDir)publish" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)publish" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PluginsDir)" SkipUnchangedFiles="true" Condition="Exists('$(PluginsDir)')" />
+  </Target>
+</Project>
